@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      # POSTGRES_MULTIPLE_DATABASES: database,camunda
+      POSTGRES_DB: database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    # volumes:
+      # - contracts-db-data:/var/lib/postgresql/data
+      # - ./create-multiple-databases.sh:/docker-entrypoint-initdb.d/create-multiple-databases.sh
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: pg_isready -U postgres
+      interval: 2s
+      timeout: 3s
+      retries: 40
