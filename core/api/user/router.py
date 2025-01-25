@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from database import crud
+from core.domain.user import crud
 from database.engine import get_db
-from database.exceptions import EmailAlreadyExistsError
-from database.schemas import User, UserCreate, UserUpdate
+from core.domain.user.exceptions import EmailAlreadyExistsError
+from core.domain.user.schemas import User, UserCreate, UserUpdate
 
 router = APIRouter()
 

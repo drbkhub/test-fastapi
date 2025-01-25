@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 
 from database import models
-from database import schemas
-from database.exceptions import EmailAlreadyExistsError
+from core.domain.user import schemas
+from core.domain.user.exceptions import EmailAlreadyExistsError
 
 
 def get_users(db: Session, skip: int = 0, limit: int = 10):
