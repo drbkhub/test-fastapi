@@ -24,3 +24,10 @@ class UserCreate(UserBase):
 class UserUpdate(BaseModel):
     username: str | None
     is_active: bool | None
+
+
+class UserResponse(BaseModel):
+    id: int
+    email: str
+    is_active: bool
+    is_admin: bool
