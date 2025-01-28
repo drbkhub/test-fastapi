@@ -46,16 +46,17 @@ async def create_user(
 ) -> UserResponse:
     try:
         db_user = await crud.create_user(db=db, user=user)
-        return UserResponse(
-            id=db_user.id,
-            username=db_user.username,
-            email=db_user.email,
-            is_active=db_user.is_active,
-            is_admin=db_user.is_admin,
-        )
 
     except EmailAlreadyExistsError as e:
         raise HTTPException(status_code=409, detail=str(e))
+
+    return UserResponse(
+        id=db_user.id,
+        username=db_user.username,
+        email=db_user.email,
+        is_active=db_user.is_active,
+        is_admin=db_user.is_admin,
+    )
 
 
 @router.delete("/users/{id}")
