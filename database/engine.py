@@ -1,24 +1,27 @@
-from sqlalchemy import create_engine
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.exc import OperationalError
-from sqlalchemy.orm import sessionmaker
 
 from settings import DATABASE_URL
-
-engine = create_engine(DATABASE_URL)
-
-try:
-    with engine.connect() as connection:
-        print("Успешное подключение к базе данных!")
-except OperationalError as e:
-    print("Ошибка подключения к базе данных:")
-    print(e)
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+from .models.base import Base
 
 
-def get_db():
+engine = create_async_engine(DATABASE_URL)
+
+# try:
+#     with engine.connect() as connection:
+#         print("Успешное подключение к базе данных!")
+# except OperationalError as e:
+#     print("Ошибка подключения к базе данных:")
+#     print(e)
+
+SessionLocal = async_sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+
+async def get_db():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
     db = SessionLocal()
     try:
         yield db
     finally:
-        db.close()
+        await db.close()

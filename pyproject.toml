@@ -5,11 +5,12 @@ description = "test-fastapi"
 readme = "README.md"
 requires-python = ">=3.13.1"
 dependencies = [
+    "asyncpg>=0.30.0",
     "fastapi>=0.115.6",
-    "psycopg2-binary>=2.9.10",
+    "pre-commit>=4.1.0",
     "pydantic>=2.10.5",
     "pydantic-settings>=2.7.1",
-    "sqlalchemy>=2.0.37",
+    "sqlalchemy[asyncio]>=2.0.37",
     "uvicorn>=0.34.0",
 ]
 

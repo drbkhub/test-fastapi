@@ -16,6 +16,6 @@ class DatabaseSettings(BaseSettings):
 db_settings = DatabaseSettings()
 
 DATABASE_URL = (
-    f"postgresql+psycopg2://{db_settings.db_user}:{db_settings.db_password}@"
+    f"postgresql+asyncpg://{db_settings.db_user}:{db_settings.db_password}@"
     f"{db_settings.db_host}:{db_settings.db_port}/{db_settings.db_name}"
 )

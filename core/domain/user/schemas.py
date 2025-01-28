@@ -12,7 +12,7 @@ class User(UserBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class UserCreate(UserBase):
@@ -24,3 +24,10 @@ class UserCreate(UserBase):
 class UserUpdate(BaseModel):
     username: str | None
     is_active: bool | None
+
+
+class UserResponse(BaseModel):
+    id: int
+    email: str
+    is_active: bool
+    is_admin: bool
