@@ -1,7 +1,5 @@
 from fastapi import FastAPI
 import uvicorn
-from database.engine import engine
-from database.models.base import Base
 from database.models.user import User  # noqa
 
 from core.api.user.router import router as user_router
