@@ -5,6 +5,7 @@ description = "test-fastapi"
 readme = "README.md"
 requires-python = ">=3.13.1"
 dependencies = [
+    "alembic>=1.14.1",
     "asyncpg>=0.30.0",
     "fastapi>=0.115.6",
     "pre-commit>=4.1.0",
